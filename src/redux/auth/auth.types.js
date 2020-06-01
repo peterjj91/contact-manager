@@ -1,0 +1,11 @@
+export const SHOW_AUTH_LOADER = 'SHOW_AUTH_LOADER';
+export const HIDE_AUTH_LOADER = 'HIDE_AUTH_LOADER';
+
+export const LOGIN = 'LOGIN';
+export const LOGOUT = 'LOGOUT';
+export const REGISTRATION = 'REGISTRATION';
+
+export const FETCH_SUCCESS_AUTH = 'FETCH_SUCCESS_AUTH';
+export const FETCH_ERROR_AUTH = 'FETCH_ERROR_AUTH';
+
+export const REQUEST_CONTACTS = 'REQUEST_CONTACTS';

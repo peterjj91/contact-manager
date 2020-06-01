@@ -1,26 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from 'react';
+import { BrowserRouter } from 'react-router-dom';
+import { useSelector, connect } from 'react-redux';
+import Layout from './layout';
+import { Navigation } from './components/Navigation';
+import { fetchAuth } from './redux/auth/auth.actions';
 
-function App() {
+function App({ fetchAuth }) {
+  const auth = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    if (auth.user) {
+      fetchAuth({ user: auth.user, session_id: auth.session_id });
+    }
+  }, [auth.user, auth.session_id, fetchAuth]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Layout>
+        <Navigation />
+      </Layout>
+    </BrowserRouter>
   );
 }
 
-export default App;
+const mapDispatchToProps = {
+  fetchAuth: fetchAuth,
+};
+
+export default connect(null, mapDispatchToProps)(App);
